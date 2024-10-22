@@ -43,7 +43,7 @@ def process_comments(response_items):
     return comments
 
 def save_to_csv(comments):
-    # Generate a filename with current timestamp
+    # Generate a filename with current timestamp.
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"youtube_comments_{timestamp}.csv"
 

@@ -90,7 +90,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     try:
-        # Before channel shelves will appear on your channel's web page, browse
+        # Before channel shelves will appear on your channel's web page, browse.
         # view needs to be enabled. If you know that your channel already has
         # it enabled, or if you want to add a number of sections before enabling it,
         # you can skip the call to enable_browse_view().
