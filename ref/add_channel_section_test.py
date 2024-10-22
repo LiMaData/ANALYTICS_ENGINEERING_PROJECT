@@ -1,4 +1,7 @@
-#!/usr/bin/python
+# Providing example of retrieve data through API call
+# https://github.com/youtube/api-samples
+
+# #!/usr/bin/python
 
 import argparse
 import os

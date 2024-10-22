@@ -9,6 +9,9 @@ import csv
 import googleapiclient.discovery
 from datetime import datetime
 
+
+from googleapiclient.http import set_user_agent
+
 def main():
     # Disable OAuthlib's HTTPS verification when running locally.
     # *DO NOT* leave this option enabled in production.
@@ -28,7 +31,9 @@ def main():
     response = request.execute()
 
     comments = process_comments(response['items'])
-    save_to_csv(comments)
+    print_comments(comments)
+    #save_to_csv(comments)
+    
 
 def process_comments(response_items):
     comments = []
@@ -42,19 +47,26 @@ def process_comments(response_items):
     print(f'Finished processing {len(comments)} comments.')
     return comments
 
-def save_to_csv(comments):
+#def save_to_csv(comments):
     # Generate a filename with current timestamp.
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"youtube_comments_{timestamp}.csv"
+    #timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    #filename = f"youtube_comments_{timestamp}.csv"
 
     # Write to CSV
-    with open(filename, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['author', 'comment', 'published_at'])
-        writer.writeheader()
-        for comment in comments:
-            writer.writerow(comment)
+    #with open(filename, 'w', newline='', encoding='utf-8') as file:
+        #writer = csv.DictWriter(file, fieldnames=['author', 'comment', 'published_at'])
+        #writer.writeheader()
+        #for comment in comments:
+            #writer.writerow(comment)
     
-    print(f"Comments have been saved to {filename}")
+    #print(f"Comments have been saved to {filename}")
+
+def print_comments(comments):
+    for comment in comments:
+        print(f"Author: {comment['author']}")
+        print(f"Comment: {comment['comment']}")
+        print(f"Published at: {comment['published_at']}")
+        print("-" * 40)  # Just to separate comments visually
 
 if __name__ == "__main__":
     main()
